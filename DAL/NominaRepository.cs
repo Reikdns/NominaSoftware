@@ -24,6 +24,7 @@ namespace DAL
 
         public void CalcularNominaTotal()
         {
+            NominaTotal = 0;
             foreach (Docente docente in Docentes)
             {
                 NominaTotal += docente.Salario;

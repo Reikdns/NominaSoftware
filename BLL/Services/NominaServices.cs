@@ -14,6 +14,8 @@ namespace BLL.Services
     {
         public NominaRepository NominaRepository { get; set; }
         private SeccionIHelper seccionIHelper;
+        private SeccionIIIHelper seccionIIIHelper;
+
         private SeccionIIHelper seccionIIHelper;
 
         public NominaServices()
@@ -21,6 +23,8 @@ namespace BLL.Services
             NominaRepository = new NominaRepository();
             seccionIHelper = new SeccionIHelper();
             seccionIIHelper = new SeccionIIHelper();
+            seccionIIIHelper = new SeccionIIIHelper();
+
         }
 
         public decimal ObtenerNomina()
@@ -48,6 +52,11 @@ namespace BLL.Services
             seccionIHelper.CalcularPuntosPorTitulosDePosgrado(aniosCursados, noClinicas, maestrias, doctorado);
         }
 
+        public int ObtenerPuntosSeccionIII(Categorias categorias, int experienciaInvestigativa, int experienciaDocente, int experienciaCargosDireccion, int experienciaNoDocente)
+        {
+            return seccionIIIHelper.CalcularPuntos(categorias, experienciaInvestigativa, experienciaDocente, experienciaCargosDireccion, experienciaNoDocente);
+        }
+
         public int ObtenerPuntosSeccionII(Categorias categorias)
         {
             return seccionIIHelper.ObtenerPuntos(categorias);
@@ -56,6 +65,11 @@ namespace BLL.Services
         public int ObtenerPuntosSeccionI()
         {
             return seccionIHelper.ObtenerPuntos();
+        }
+
+        public List<Docente> ObtenerDocentes()
+        {
+            return NominaRepository.Docentes;
         }
     }
 }

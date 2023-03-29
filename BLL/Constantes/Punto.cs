@@ -33,7 +33,11 @@ namespace BLL.Constantes
         public const int Titular = 96;
 
 
-
+        //Experiencia
+        public const int InstructorExp = 3;
+        public const int AsistenteExp = 5;
+        public const int AsociadoExp = 6;
+        public const int TituladoExp = 7;
 
 
     }

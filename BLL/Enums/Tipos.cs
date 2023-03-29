@@ -19,5 +19,5 @@ namespace BLL.Enums
         Asociado,
         Titular
     }
-    
+
 }
