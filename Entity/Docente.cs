@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Entity
+﻿namespace Entity
 {
     public class Docente
     {
+        public int Puntos { get; set; }
+        public decimal Salario { get; set; }
 
-       
+        public void CalcularSalario()
+        {
+            Salario = 16441m * Puntos;
+        }
     }
 }

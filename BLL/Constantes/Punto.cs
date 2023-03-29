@@ -26,6 +26,12 @@ namespace BLL.Constantes
 
         public const int MedicinaAnio = 15;
 
+        //Categoria
+        public const int Instructor = 37;
+        public const int Asistente = 58;
+        public const int Asociado = 74;
+        public const int Titular = 96;
+
 
 
 

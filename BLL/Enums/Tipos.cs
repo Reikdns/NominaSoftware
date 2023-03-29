@@ -11,5 +11,13 @@ namespace BLL.Enums
         Medicina_Musica,
         OtraArea 
    };
+
+    public enum Categorias
+    {
+        Instructor,
+        Asistente,
+        Asociado,
+        Titular
+    }
     
 }

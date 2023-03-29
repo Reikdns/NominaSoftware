@@ -1,8 +1,9 @@
 ﻿using BLL.Constantes;
 using BLL.Enums;
-namespace BLL
+
+namespace BLL.Helpers
 {
-    public class SeccionIService
+    public class SeccionIHelper
     {
         public int Puntos { get; set; }
         public int PuntosPregrado { get; set; }
@@ -18,12 +19,12 @@ namespace BLL
 
         public void CalcularPuntosPorTitulosDePregrado(Titulos? titulo)
         {
-            if(titulo == Titulos.Medicina_Musica)
+            if (titulo == Titulos.Medicina_Musica)
             {
                 PuntosPregrado += Punto.PregradoMedicinaHumanaComposicionMusical;
                 EsMedicinaOMusica = true;
             }
-            else if(titulo == Titulos.OtraArea)
+            else if (titulo == Titulos.OtraArea)
             {
                 PuntosPregrado += Punto.Pregrado;
                 EsMedicinaOMusica = false;
@@ -41,14 +42,19 @@ namespace BLL
                 PuntosEspecializacion += noClinicas > 2 ? noClinicas * Punto.EspecializacionTipoI * 2 : Punto.EspecializacionTipoI;
             }
 
+            PuntosPosgrado += PuntosEspecializacion;
+
             if (maestrias == 1)
             {
                 PuntosMaestria += Punto.MagisterTipoI;
             }
-            else if(maestrias > 2)
+            else if (maestrias > 2)
             {
                 PuntosMaestria += Punto.MagisterTipoII;
             }
+
+            PuntosPosgrado += PuntosMaestria;
+
 
             if (PuntosEspecializacion + PuntosMaestria >= 60)
             {
@@ -64,7 +70,9 @@ namespace BLL
                 PuntosDoctorado += maestrias == 0 ? Punto.DoctoradoTipoIII : Punto.DoctoradoTipoII;
             }
 
-            if(PuntosPosgrado + PuntosDoctorado > 140)
+            PuntosPosgrado += PuntosDoctorado;
+
+            if (PuntosPosgrado + PuntosDoctorado > 140)
             {
                 PuntosPosgrado = 140;
             }
@@ -77,11 +85,13 @@ namespace BLL
             PuntosEspecializacion = 0;
             PuntosMaestria = 0;
             PuntosPosgrado = 0;
-        }   
-        
+        }
+
         public int ObtenerPuntos()
         {
-            return PuntosPosgrado + PuntosPregrado;
+            int totalPuntos = PuntosPosgrado + PuntosPregrado;
+            Reset();
+            return totalPuntos;
         }
     }
 }
